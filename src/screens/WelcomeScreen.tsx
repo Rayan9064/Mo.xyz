@@ -1,10 +1,18 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, SafeAreaView, Image, TextInput } from 'react-native';
 import { NavigationProp } from '../navigation/types';
+import CountryPicker, { Country, CountryCode } from 'react-native-country-picker-modal';
 
 export const WelcomeScreen = ({ navigation }: { navigation: NavigationProp }) => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [countryCode, setCountryCode] = useState('+456');
+  const [countryPickerCode, setCountryPickerCode] = useState<CountryCode>('US');
+  const [visible, setVisible] = useState(false);
+
+  const onSelect = (country: Country) => {
+    setCountryCode(`+${country.callingCode[0]}`);
+    setCountryPickerCode(country.cca2);
+  };
 
   return (
     <SafeAreaView className="flex-1 bg-primary p-5">
@@ -23,18 +31,33 @@ export const WelcomeScreen = ({ navigation }: { navigation: NavigationProp }) =>
       
       <View className="mt-10">
         <View className="flex-row space-x-3">
-          <TextInput
-            className="w-[90px] bg-white/10 rounded-lg text-white text-lg text-center"
-            placeholder="+456"
-            keyboardType="numeric"
-            value={countryCode}
-            onChangeText={setCountryCode}
-            placeholderTextColor="rgba(255, 255, 255, 0.5)"
-            style={{
-              height: 56,
-              paddingHorizontal: 12
-            }}
+          <TouchableOpacity
+            onPress={() => setVisible(true)}
+            className="w-[90px] bg-white/10 rounded-lg flex-row items-center justify-center"
+            style={{ height: 56 }}
+          >
+            <Text className="text-white text-lg">{countryCode}</Text>
+            <CountryPicker
+              visible={visible}
+              onClose={() => setVisible(false)}
+              onSelect={onSelect}
+              countryCode={countryPickerCode}
+              withFilter
+              withFlag
+              withCallingCode
+              withEmoji
+              withAlphaFilter
+              containerButtonStyle={{ display: 'none' }}
+              theme={{
+                onBackgroundTextColor: '#FFFFFF',
+                backgroundColor: '#077330',
+              }}
+            />
+            <Image 
+            source={require('../../assets/arrow_down.png')}
+            className='mx-2'
           />
+          </TouchableOpacity>
           <TextInput
             className="flex-1 bg-white/10 px-4 rounded-lg text-white text-lg"
             placeholder="1234 5678"
@@ -47,7 +70,7 @@ export const WelcomeScreen = ({ navigation }: { navigation: NavigationProp }) =>
             }}
           />
         </View>
-        <View className="flex-row items-center mt-5">
+        <View className="flex-row items-center mt-10">
           <Image 
             source={require('../../assets/tick.png')}
             className='mr-6'
@@ -57,7 +80,7 @@ export const WelcomeScreen = ({ navigation }: { navigation: NavigationProp }) =>
           </Text>
         </View>
         <TouchableOpacity 
-          onPress={() => navigation.navigate('Verify')}
+          onPress={() => navigation.navigate('VerifySilent')}
           className="mx-auto mt-10 p-2"
         >
           <Image 

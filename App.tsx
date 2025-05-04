@@ -1,10 +1,13 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { WelcomeScreen } from './src/screens/WelcomeScreen';
-import { VerifyScreen } from './src/screens/VerifyScreen';
+import {
+  WelcomeScreen,
+  VerifySilentScreen,
+  SMSOTPScreen,
+  WhatsAppOTPScreen
+} from './src/screens';
 import { RootStackParamList } from './src/navigation/types';
-import { withExpoSnack } from 'nativewind';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -17,10 +20,12 @@ function App() {
         }}
       >
         <Stack.Screen name="Welcome" component={WelcomeScreen} />
-        <Stack.Screen name="Verify" component={VerifyScreen} />
+        <Stack.Screen name="VerifySilent" component={VerifySilentScreen} />
+        <Stack.Screen name="SMSOTP" component={SMSOTPScreen} />
+        <Stack.Screen name="WhatsAppOTP" component={WhatsAppOTPScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-export default withExpoSnack(App);
+export default App;
