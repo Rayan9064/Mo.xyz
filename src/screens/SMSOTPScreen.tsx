@@ -1,10 +1,36 @@
-import React, { useState } from 'react';
-import { Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { Text, View, SafeAreaView, Image, TouchableOpacity, TextInput } from 'react-native';
 import { NavigationProp } from '../navigation/types';
-import { MaskedTextInput } from 'react-native-mask-text';
 
 export const SMSOTPScreen = ({ navigation }: { navigation: NavigationProp }) => {
-    const [code, setCode] = useState('');
+    const [code, setCode] = useState(['', '', '', '', '', '']);
+    const inputRefs = useRef<TextInput[]>([]);
+
+    useEffect(() => {
+        if (code.every(digit => digit !== '')) {
+            const timer = setTimeout(() => {
+                navigation.navigate('CreateWallet');
+            }, 2000); // 2 seconds delay
+            
+            return () => clearTimeout(timer);
+        }
+    }, [code, navigation]);
+
+    const handleCodeChange = (text: string, index: number) => {
+        const newCode = [...code];
+        newCode[index] = text;
+        setCode(newCode);
+        
+        if (text !== '' && index < 5) {
+            inputRefs.current[index + 1]?.focus();
+        }
+    };
+
+    const handleKeyPress = (e: any, index: number) => {
+        if (e.nativeEvent.key === 'Backspace' && index > 0 && code[index] === '') {
+            inputRefs.current[index - 1]?.focus();
+        }
+    };
 
     return (
         <SafeAreaView className="flex-1 bg-primary p-5">
@@ -26,24 +52,33 @@ export const SMSOTPScreen = ({ navigation }: { navigation: NavigationProp }) => 
                 </Text>
             </View>
 
-
             <View className="mt-10">
-            <View className=" rounded-lg p-4 flex-row items-center">
-                <Image
-                    source={require('../../assets/mobile.png')}
-                    className='mr-6'
-                />
-                <Text className="text-white text-lg">+456 1234 5678</Text>
-            </View>
-                <MaskedTextInput
-                    className="bg-white/10 p-4 rounded-lg text-white text-2xl text-center mt-10 tracking-[8px]"
-                    placeholder="111111"
-                    keyboardType="numeric"
-                    mask="999999"
-                    onChangeText={(text, rawText) => setCode(rawText)}
-                    value={code}
-                    placeholderTextColor="rgba(255, 255, 255, 0.5)"
-                />
+                <View className="rounded-lg p-4 flex-row items-center">
+                    <Image
+                        source={require('../../assets/mobile.png')}
+                        className='mr-6'
+                    />
+                    <Text className="text-white text-lg">+456 1234 5678</Text>
+                </View>
+                <View className="flex-row justify-between mt-10">
+                    {code.map((digit, index) => (
+                        <TextInput
+                            key={index}
+                            ref={(ref) => {
+                                if (ref) {
+                                    inputRefs.current[index] = ref;
+                                }
+                            }}
+                            className="bg-primary border-2 border-white/20 w-[50px] h-[50px] rounded-lg text-white text-2xl text-center"
+                            keyboardType="numeric"
+                            maxLength={1}
+                            value={digit}
+                            onChangeText={text => handleCodeChange(text, index)}
+                            onKeyPress={e => handleKeyPress(e, index)}
+                            selectionColor="white"
+                        />
+                    ))}
+                </View>
                 <TouchableOpacity
                     className="flex-row justify-center items-center mt-5 p-2.5"
                     onPress={() => navigation.navigate('WhatsAppOTP')}
