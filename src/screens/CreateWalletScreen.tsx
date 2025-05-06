@@ -4,7 +4,7 @@ import { NavigationProp } from '../navigation/types';
 
 export const CreateWalletScreen = ({ navigation }: { navigation: NavigationProp }) => {
     return (
-        <SafeAreaView className="flex-1 bg-primary p-5">
+        <SafeAreaView className="flex-1 bg-brand_green p-5">
             <View className="mt-10">
                 <TouchableOpacity onPress={() => navigation.goBack()} className='mb-6'>
                     <Image
@@ -25,7 +25,10 @@ export const CreateWalletScreen = ({ navigation }: { navigation: NavigationProp 
 
             <View className="flex-1 justify-between">
                 <View className="mt-10">
-                    <TouchableOpacity className="bg-white/10 rounded-xl p-2">
+                    <TouchableOpacity 
+                        className="bg-white/10 rounded-xl p-2"
+                        onPress={() => navigation.navigate('Home')}
+                    >
                         <Text className="text-white text-center text-lg font-medium">Create a wallet</Text>
                     </TouchableOpacity>
 

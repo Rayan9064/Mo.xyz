@@ -15,7 +15,7 @@ export const WelcomeScreen = ({ navigation }: { navigation: NavigationProp }) =>
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-primary p-5">
+    <SafeAreaView className="flex-1 bg-brand_green p-5">
       <View className="mt-10">
         <View className="flex-row items-center my-12">
           <Image 

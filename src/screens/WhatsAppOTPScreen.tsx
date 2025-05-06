@@ -33,7 +33,7 @@ export const WhatsAppOTPScreen = ({ navigation }: { navigation: NavigationProp }
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-primary p-5">
+    <SafeAreaView className="flex-1 bg-brand_green p-5">
             <View className="mt-10">
                 <TouchableOpacity onPress={() => navigation.goBack()} className='mb-6'>
                     <Image
@@ -69,7 +69,7 @@ export const WhatsAppOTPScreen = ({ navigation }: { navigation: NavigationProp }
                                     inputRefs.current[index] = ref;
                                 }
                             }}
-                            className="bg-primary border-2 border-white/20 w-[50px] h-[50px] rounded-lg text-white text-2xl text-center"
+                            className="bg-brand_green border-2 border-white/20 w-[50px] h-[50px] rounded-lg text-white text-2xl text-center"
                             keyboardType="numeric"
                             maxLength={1}
                             value={digit}
