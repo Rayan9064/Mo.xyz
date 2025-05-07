@@ -97,6 +97,7 @@ export const HomeScreen = ({ navigation }: { navigation: NavigationProp }) => {
             <AddMoneyModal 
                 visible={showAddMoneyModal}
                 onClose={() => setShowAddMoneyModal(false)}
+                navigation={navigation}
             />
         </SafeAreaView>
     );

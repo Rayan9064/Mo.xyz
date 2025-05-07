@@ -1,12 +1,14 @@
 import React, { useRef } from 'react';
 import { View, Text, TouchableOpacity, Modal, Image, Animated, PanResponder, TouchableWithoutFeedback } from 'react-native';
+import { NavigationProp } from '../navigation/types';
 
 interface AddMoneyModalProps {
     visible: boolean;
     onClose: () => void;
+    navigation: NavigationProp;
 }
 
-export const AddMoneyModal = ({ visible, onClose }: AddMoneyModalProps) => {
+export const AddMoneyModal = ({ visible, onClose, navigation }: AddMoneyModalProps) => {
     const pan = useRef(new Animated.ValueXY()).current;
     const translateY = useRef(new Animated.Value(0)).current;
 
@@ -33,6 +35,11 @@ export const AddMoneyModal = ({ visible, onClose }: AddMoneyModalProps) => {
 
     const modalStyle = {
         transform: pan.getTranslateTransform()
+    };
+
+    const handleDefiWalletPress = () => {
+        onClose();
+        navigation.navigate('DefiWallet');
     };
 
     return (
@@ -63,7 +70,7 @@ export const AddMoneyModal = ({ visible, onClose }: AddMoneyModalProps) => {
 
                                     <TouchableOpacity 
                                         className="bg-gray_7 py-3.5 px-4 rounded-xl"
-                                        onPress={() => {}}
+                                        onPress={handleDefiWalletPress}
                                     >
                                         <Text className="text-gray-900 text-base text-center">from DeFi Wallet</Text>
                                     </TouchableOpacity>

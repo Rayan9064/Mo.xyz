@@ -7,7 +7,8 @@ import {
   SMSOTPScreen,
   WhatsAppOTPScreen,
   CreateWalletScreen,
-  HomeScreen
+  HomeScreen,
+  DefiWalletScreen,
 } from './src/screens';
 import { RootStackParamList } from './src/navigation/types';
 
@@ -27,6 +28,7 @@ function App() {
         <Stack.Screen name="WhatsAppOTP" component={WhatsAppOTPScreen} />
         <Stack.Screen name="CreateWallet" component={CreateWalletScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="DefiWallet" component={DefiWalletScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

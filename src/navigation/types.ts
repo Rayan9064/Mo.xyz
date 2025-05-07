@@ -7,6 +7,7 @@ export type RootStackParamList = {
   WhatsAppOTP: undefined;
   CreateWallet: undefined;
   Home: undefined;
+  DefiWallet: undefined;
 };
 
 export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
