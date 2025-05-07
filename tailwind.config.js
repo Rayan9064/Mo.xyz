@@ -18,6 +18,7 @@ module.exports = {
         gray_2: '#686868',
         gray_3: '#9D9D9D',
         gray_5: '#DADADA',
+        gray_7: '#F5F5F5',
       },
     },
   },

@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, SafeAreaView, Image, TouchableOpacity, ScrollView } from 'react-native';
 import { NavigationProp } from '../navigation/types'; 
-import { Icon } from '../components/Icon';  // Assuming you have an Icon component
+import { Icon } from '../components/Icon';  
+import { AddMoneyModal } from '../components/AddMoneyModal';
 
 export const HomeScreen = ({ navigation }: { navigation: NavigationProp }) => {
+    const [showAddMoneyModal, setShowAddMoneyModal] = useState(false);
+
     return (
         <SafeAreaView className="flex-1 bg-home">
             <View className="flex-1">
@@ -23,12 +26,15 @@ export const HomeScreen = ({ navigation }: { navigation: NavigationProp }) => {
 
                         <Text className="text-4xl text-gray_1 font-semibold mt-2">US$1,233.99</Text>
 
-                        <View className="flex-row space-x-4 mt-4">
-                            <TouchableOpacity className="bg-brand_green_3 py-2 px-6 rounded-full">
-                                <Text className="text-white text-base">Add money</Text>
+                        <View className="flex-row justify-between mt-6">
+                            <TouchableOpacity 
+                                className="flex-1 bg-brand_green_3 py-3 px-8 rounded-2xl mr-4"
+                                onPress={() => setShowAddMoneyModal(true)}
+                            >
+                                <Text className="text-white text-lg text-center font-medium">Add money</Text>
                             </TouchableOpacity>
-                            <TouchableOpacity className="bg-brand_green_3 py-2 px-6 rounded-full">
-                                <Text className="text-white text-base">Withdraw</Text>
+                            <TouchableOpacity className="flex-1 bg-brand_green_3 py-3 px-8 rounded-2xl">
+                                <Text className="text-white text-lg text-center font-medium">Withdraw</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -38,7 +44,7 @@ export const HomeScreen = ({ navigation }: { navigation: NavigationProp }) => {
                             <View className="flex-row justify-between items-center">
                                 <Text className="text-lg font-semibold">Cash</Text>
                             </View>
-                            <Text className="text-2xl  front-gray_1 font-semibold mt-2">$233.33</Text>
+                            <Text className="text-2xl  front-gray_1 font-semibold mt-4">$233.33</Text>
                             <Text className="text-sm text-gray_3 mt-1">USDC</Text>
                         </TouchableOpacity>
 
@@ -47,7 +53,7 @@ export const HomeScreen = ({ navigation }: { navigation: NavigationProp }) => {
                                 <Text className="text-lg font-semibold">Earn</Text>
                                 <Image source={require('../../assets/arrow_right.png')} className="ml-2" />
                             </View>
-                            <Text className="text-2xl front-gray_1 font-semibold mt-2">$1,000.66</Text>
+                            <Text className="text-2xl front-gray_1 font-semibold mt-4">$1,000.66</Text>
                             <View className="flex-row items-center">
                                 <Image source={require('../../assets/arrow_up.png')} className="mt-1 mr-1" />
                                 <Text className="text-sm text-gray_3 mt-1">7.50% APY</Text>
@@ -87,6 +93,11 @@ export const HomeScreen = ({ navigation }: { navigation: NavigationProp }) => {
                     </TouchableOpacity>
                 </View>
             </View>
+
+            <AddMoneyModal 
+                visible={showAddMoneyModal}
+                onClose={() => setShowAddMoneyModal(false)}
+            />
         </SafeAreaView>
     );
 };
