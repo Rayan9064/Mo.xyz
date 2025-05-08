@@ -63,7 +63,10 @@ export const AddMoneyModal = ({ visible, onClose, navigation }: AddMoneyModalPro
                                 <View className="space-y-4 mx-[15%] mt-8 mb-16">
                                     <TouchableOpacity 
                                         className="bg-gray_7 py-3.5 px-4 rounded-xl"
-                                        onPress={() => {}}
+                                        onPress={() => {
+                                            onClose();
+                                            navigation.navigate('BanksAndCards');
+                                        }}
                                     >
                                         <Text className="text-gray-900 text-base text-center">from Banks and Cards</Text>
                                     </TouchableOpacity>

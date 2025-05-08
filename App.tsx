@@ -9,6 +9,7 @@ import {
   CreateWalletScreen,
   HomeScreen,
   DefiWalletScreen,
+  BanksAndCardsScreen,
 } from './src/screens';
 import { RootStackParamList } from './src/navigation/types';
 
@@ -29,6 +30,7 @@ function App() {
         <Stack.Screen name="CreateWallet" component={CreateWalletScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="DefiWallet" component={DefiWalletScreen} />
+        <Stack.Screen name="BanksAndCards" component={BanksAndCardsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

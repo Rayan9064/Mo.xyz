@@ -8,6 +8,7 @@ export type RootStackParamList = {
   CreateWallet: undefined;
   Home: undefined;
   DefiWallet: undefined;
+  BanksAndCards: undefined;
 };
 
 export type NavigationProp = NativeStackNavigationProp<RootStackParamList>;

@@ -5,3 +5,4 @@ export * from './WhatsAppOTPScreen';
 export * from './CreateWalletScreen';
 export * from './HomeScreen';
 export * from './DefiWalletScreen';
+export * from './BanksAndCardsScreen';
