@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, View, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import { NavigationProp } from '../navigation/types';
+import { BottomNavBar } from '../components/BottomNavBar';
 
 export const DefiWalletScreen = ({ navigation }: { navigation: NavigationProp }) => {
     return (
@@ -59,26 +60,7 @@ export const DefiWalletScreen = ({ navigation }: { navigation: NavigationProp })
                     </TouchableOpacity>
                 </View>
 
-                <View className="absolute bottom-0 left-0 right-0">
-                    <View className="flex-row justify-between items-center px-8 py-4 bg-white border-t border-gray-200">
-                        <TouchableOpacity>
-                            <Image source={require('../../assets/home.png')} className="tint-brand_green_3" />
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Image source={require('../../assets/trending_up.png')} className="opacity-50" />
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Image source={require('../../assets/dollar.png')} className="opacity-50" />
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Image source={require('../../assets/history.png')} className="opacity-50" />
-                        </TouchableOpacity>
-                        <TouchableOpacity>
-                            <Image source={require('../../assets/profile.png')} className="opacity-50" />
-                        </TouchableOpacity>
-                    </View>
-                    <View className="h-8 bg-white" />
-                </View>
+                <BottomNavBar navigation={navigation} />
             </View>
         </SafeAreaView>
     );
