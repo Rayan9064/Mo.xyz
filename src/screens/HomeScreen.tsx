@@ -88,7 +88,7 @@ export const HomeScreen = ({ navigation }: { navigation: NavigationProp }) => {
                             <Image source={require('../../assets/profile.png')} className="opacity-50" />
                         </TouchableOpacity>
                     </View>
-                    <View className="h-8 bg-white" /> {/* Safe area for device navigation */}
+                    <View className="h-8 bg-white" />
                 </View>
             </View>
 

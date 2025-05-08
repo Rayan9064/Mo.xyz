@@ -6,7 +6,6 @@ export const DefiWalletScreen = ({ navigation }: { navigation: NavigationProp })
     return (
         <SafeAreaView className="flex-1 bg-gray_7">
             <View className="flex-1">
-                {/* Header */}
                 <View className="px-6 pt-10 pb-4">
                     <View className="flex-row items-center justify-between">
                         <TouchableOpacity
@@ -20,7 +19,6 @@ export const DefiWalletScreen = ({ navigation }: { navigation: NavigationProp })
                     </View>
                 </View>
 
-                {/* Main Content */}
                 <View className="px-6 flex-1">
                     <Text className="text-3xl text-gray_1 text-center font-semibold mt-4">Send USDC on Base</Text>
 
@@ -32,7 +30,6 @@ export const DefiWalletScreen = ({ navigation }: { navigation: NavigationProp })
                         />
                         <View className="flex-row items-center mt-8">
                             <View className='flex-1 flex-row justify-between items-center'>
-
                                 <Text className="text-base text-gray_2">
                                     0x9522228904d728aa3ddd{'\n'}
                                     38bcc1a1d155cc4bafe5
@@ -62,7 +59,6 @@ export const DefiWalletScreen = ({ navigation }: { navigation: NavigationProp })
                     </TouchableOpacity>
                 </View>
 
-                {/* Bottom Navigation */}
                 <View className="absolute bottom-0 left-0 right-0">
                     <View className="flex-row justify-between items-center px-8 py-4 bg-white border-t border-gray-200">
                         <TouchableOpacity>
@@ -81,7 +77,7 @@ export const DefiWalletScreen = ({ navigation }: { navigation: NavigationProp })
                             <Image source={require('../../assets/profile.png')} className="opacity-50" />
                         </TouchableOpacity>
                     </View>
-                    <View className="h-8 bg-white" /> {/* Safe area for device navigation */}
+                    <View className="h-8 bg-white" />
                 </View>
             </View>
         </SafeAreaView>
